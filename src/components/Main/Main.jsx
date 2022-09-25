@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { v4 as uuidv4 } from 'uuid';
 
 import Form from "./Form";
-//import Card from "./Card";
+import Card from "./Card";
 
 class Main extends Component {
 
@@ -10,38 +9,34 @@ class Main extends Component {
     super(props)
   
     this.state = {
-      form:""
-    };
+       name:"",
+       email:"",
+       age:"",
+       photo:""
+    }
   }
-
-
-  handleChange = e => {
-    this.setState({
-      form: {
-        ...this.state.form,
-        [e.target.name]: e.target.value
-      }
-    });
-  }  
   
-
-  render() {
-    return (
-      <fieldset>
-        <legend>Main</legend>
+    handleChange = (e) => {
+      this.setState({ [e.target.name]: e.target.value })
+    }
+  
+  
+    render() {
+      return (
+        <article>
           <Form 
-            value={this.state.value}
-            handleOnChange={this.handleChange} 
-            form={this.state.form}
-            key={uuidv4()} />
-
-          {/*<Card
-            value={this.state.value}
-            handleOnChange={this.handleChange} 
-            key={uuidv4()} />*/}
-      </fieldset>
-    )
+          value={this.state.value}
+          onInputChange={this.handleChange}
+          />
+          <Card 
+            name = {this.state.name}
+            email = {this.state.email}
+            age = {this.state.age}
+            photo = {this.state.photo}
+          />
+        </article>
+      )
+    }
   }
-}
 
 export default Main;

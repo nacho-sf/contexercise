@@ -2,22 +2,15 @@ import React, { Component } from "react";
 
 class Card extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {state:""}
-  }
-  
-  handleOnChange = (e) => {
-    this.props.handleOnChange(e.target.value);
-  }
-
   render() {
+    const {name, email, age, photo} = this.props;
     return (
       <fieldset>
         <legend>Card</legend>
-          <input 
-            value={this.props.value} 
-            onChange={(e) => this.handleOnChange(e)} />
+            <h3>{name}</h3>
+            <p>{email}</p> 
+            <p>{age}</p>
+            <img src={photo} alt={name} />
       </fieldset>
     );
   }
