@@ -18,6 +18,8 @@ class Form extends Component {
       e.preventDefault();
       this.setState({ name: e.target.name.value })
       alert("Datos de "+this.state.name+" enviados correctamente")
+      e.target.reset();
+      
     }
   
     render() {
@@ -60,7 +62,7 @@ class Form extends Component {
             /><br/>
 
             <input type="submit" value="Enviar" />
-            
+
           </form>
         </fieldset>
       )
