@@ -7,7 +7,7 @@ class Card extends Component {
     this.state = {state:""}
   }
   
-  handleOnChange(e) {
+  handleOnChange = (e) => {
     this.props.handleOnChange(e.target.value);
   }
 

@@ -2,25 +2,30 @@ import React, { Component } from "react";
 
 class Form extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {value:""}
-  }
-  
-  handleOnChange(e) {
-    this.props.handleOnChange(e.target.value);
+  handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(this.state);
   }
 
-  render() {
+
+  render(){
+    const {form} = this.props
     return (
-      <fieldset>
-        <legend>Form</legend>
+      <section>
+        <form onSubmit={this.handleSubmit}>
           <input 
-            value={this.props.value} 
-            onChange={(e) => this.handleOnChange(e)} />
-      </fieldset>
-    );
+          type="text"
+          placeholder="Nombre..."
+          name="name"
+          value={form.name} 
+          onChange={this.props.handleOnChange}
+          />
+          <button type="submit">Enviar</button>
+        </form>
+      </section>
+    )
   }
+
 }
 
 export default Form

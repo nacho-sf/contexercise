@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { v4 as uuidv4 } from 'uuid';
 
 import Form from "./Form";
-import Card from "./Card";
+//import Card from "./Card";
 
 class Main extends Component {
 
@@ -10,22 +10,20 @@ class Main extends Component {
     super(props)
   
     this.state = {
-      value:""
+      form:""
     };
   }
 
-  
-  handleChangeForm = (val) => {
-    this.setState({
-      value:val
-    })
-  }
 
-  handleChangeCard = (val) => {
+  handleChange = e => {
     this.setState({
-      value:val
-    })
-  }
+      form: {
+        ...this.state.form,
+        [e.target.name]: e.target.value
+      }
+    });
+  }  
+  
 
   render() {
     return (
@@ -33,13 +31,14 @@ class Main extends Component {
         <legend>Main</legend>
           <Form 
             value={this.state.value}
-            handleOnChange={this.handleChangeForm} 
+            handleOnChange={this.handleChange} 
+            form={this.state.form}
             key={uuidv4()} />
 
-          <Card
+          {/*<Card
             value={this.state.value}
-            handleOnChange={this.handleChangeCard} 
-            key={uuidv4()} />
+            handleOnChange={this.handleChange} 
+            key={uuidv4()} />*/}
       </fieldset>
     )
   }
