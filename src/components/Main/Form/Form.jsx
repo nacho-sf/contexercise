@@ -1,12 +1,15 @@
 import React, { Component } from "react";
+import {userContext} from '../../../context/userContext';
 
 class Form extends Component {
+
+  static contextType = userContext;
 
   constructor(props) {
     super(props)
   
     this.state = {
-       name:""
+       email:""
     }
   }
   
@@ -14,10 +17,13 @@ class Form extends Component {
       this.setState({ [e.target.name]: e.target.value })
     }
 
+
     handleSubmit = (e) => {
       e.preventDefault();
-      this.setState({ name: e.target.name.value })
-      alert("Datos de "+this.state.name+" enviados correctamente")
+      const data = this.context;
+      data.login(this.state.email);
+      this.setState({ name: e.target.email.value });
+      alert("Datos de "+this.state.email+" enviados correctamente");
       e.target.reset();
       
     }
@@ -33,8 +39,7 @@ class Form extends Component {
             name="name"
             placeholder="Nombre..."
             value={this.props.name}
-            onChange={ (e) => { this.props.onInputChange(e); 
-              this.onNameChange(e); } }
+            onChange={this.props.onInputChange}
             /><br/>
 
             <input 
@@ -42,7 +47,8 @@ class Form extends Component {
             name="email"
             placeholder="Email..."
             value={this.props.email}
-            onChange={this.props.onInputChange}
+            onChange={ (e) => { this.props.onInputChange(e); 
+              this.onNameChange(e); } }
             /><br/>
 
             <input 
